@@ -1,12 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once '../../libraries/Streams.php';
-
 use Symfony\Component\Process\Process;
 class Stream extends CI_Controller {
 
-	/**
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('Servercache');
+
+    }
+
+
+    /**
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
@@ -24,10 +30,14 @@ class Stream extends CI_Controller {
 	public function index()
 	{
         $process = new Process('ping 8.8.8.8');
-	    echo "yo";
 	}
 
 	public function start() {
+
+//        $this->cache->save('foo', 'there', 4000);
+//        $foo = $this->cache->get('foo');
+
+//        var_dump($foo);
 
     }
 
@@ -42,7 +52,7 @@ class Stream extends CI_Controller {
 
 // executes after the command finishes
         $process = json_encode($process);
-
+        $i = 0;
         foreach ($process as $type => $data) {
             if ($process::OUT === $type) {
                 echo "<br />".$data;
@@ -62,12 +72,13 @@ class Stream extends CI_Controller {
         $stream_url = $this->input->post('stream_url');
         $video = $this->input->post('video');
 
-//        $process = new Process('ping 8.8.8.8 -t');
-//        $process->start();
-        //$process->disableOutput();
-//        $pid = $process->getPid();
-        Stream::set('x');
-        var_dump(Stream::$persistentData);
+        $process = new Process('ping 8.8.8.8');
+        $process->start();
+//        $process->disableOutput();
+        echo $pid = $process->getPid();
+
+        saveProcess($pid);
+        var_dump(getCache('processes'));
 //        echo serialize($process);
     }
 
@@ -97,4 +108,7 @@ class Stream extends CI_Controller {
         }
 
     }
+
+
+
 }
