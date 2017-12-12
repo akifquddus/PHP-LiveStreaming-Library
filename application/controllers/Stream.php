@@ -29,7 +29,13 @@ class Stream extends CI_Controller {
 	 */
 	public function index()
 	{
-        $process = new Process('ping 8.8.8.8');
+//        $process = new Process('ping 8.8.8.8');
+//        echo "<pre>";
+//        print_r(getCache("processes"));
+//        echo "<pre/>";
+
+        clean();
+
 	}
 
 	public function start() {
@@ -72,7 +78,7 @@ class Stream extends CI_Controller {
         $stream_url = $this->input->post('stream_url');
         $video = $this->input->post('video');
 
-        $process = new Process('ping 8.8.8.8');
+        $process = new Process('ls -lsa');
         $process->start();
 //        $process->disableOutput();
         echo $pid = $process->getPid();

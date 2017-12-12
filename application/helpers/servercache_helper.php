@@ -1,5 +1,9 @@
 <?php
 
+use Symfony\Component\Process\Process;
+
+    define('IS_LINUX', TRUE);
+
     function loadCache() {
         $CI = & get_instance();
         $CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
@@ -13,7 +17,7 @@
     function saveInCache($key, $value) {
 
         $CI = loadCache();
-        $CI->cache->save($key, $value, 4000);
+        $CI->cache->save($key, $value, 90000);
     }
 
     function saveProcess($PID) {
@@ -23,14 +27,21 @@
             $processes = [];
         }
         $processes[$PID] = time();
-        $CI->cache->save('processes', $processes, 4000);
+        $CI->cache->save('processes', $processes, 90000);
     }
 
     function clean() {
         $CI = loadCache();
         $processes = $CI->cache->get('processes');
-        if(is_array($processes)) {
-            foreach ($processes as $key => $theProcess) {
+        if($processes && is_array($processes)) {
+            foreach ($processes as $pid => $time) {
+                $yesterday = strtotime('-1 days', time());
+                echo " ".$pid."<br/>";
+               if($yesterday > $time) { //if application been more than 24 hours
+                   unset($processes[$pid]);
+                   $CI->cache->save('processes', $processes, 90000);    //save after updating
+               }
+
 
             }
         }
