@@ -4,29 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use Symfony\Component\Process\Process;
 class Stream extends CI_Controller {
 
+
+
     public function __construct()
     {
         parent::__construct();
         $this->load->helper('Servercache');
+        $this->load->helper('ffmpeg');
+
+        //Helper to write anytype of tests we require
+        $this->load->helper('tests');
 
     }
 
-
     /**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+     * Homepage function for our Streaming Server
+     */
 	public function index()
 	{
 //        $process = new Process('ping 8.8.8.8');
@@ -81,7 +74,7 @@ class Stream extends CI_Controller {
         $process = new Process('ls -lsa');
         $process->start();
 //        $process->disableOutput();
-        echo $pid = $process->getPid();
+        $pid = $process->getPid();
 
         saveProcess($pid);
         var_dump(getCache('processes'));
@@ -115,6 +108,9 @@ class Stream extends CI_Controller {
 
     }
 
+    public function exeaction() {
+	    var_dump(FFMPEG_START_STREAM('D:\red5-server\webapps\oflaDemo\streams\emi.mp4', 'save.mp4'));
 
+    }
 
 }

@@ -2,8 +2,6 @@
 
 use Symfony\Component\Process\Process;
 
-    define('IS_LINUX', TRUE);
-
     function loadCache() {
         $CI = & get_instance();
         $CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
