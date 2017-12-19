@@ -3,6 +3,7 @@
  * Dependencies Loaded
  */
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 /**
  * Installation path of ffmpeg
@@ -43,13 +44,11 @@ function FFMPEG_START_STREAM($source, $destination) {
         $streamCommand_string .= FFMPEG_STREAM_COMMPAND_PART_2;
         $streamCommand_string .= '"'.$destination.'"';
 
-//        echo $streamCommand_string;
-
-
         $process = new Process($streamCommand_string);
         $process->start();
 
-        return $process;
+        return $process;    //return whole process obj
+
     } catch (Exception $exception) {    //Overall any type of exception.
         //In case Debuging active
         if(ENV_IS_DEBUG) {
@@ -62,4 +61,32 @@ function FFMPEG_START_STREAM($source, $destination) {
     return $response;
 }
 
+/**
+ * Terminate the started process via PID
+ * @param $PID
+ * @return bool
+ */
+function FFMPEG_KILL_PROCESS($PID) {
+
+    if(IS_LINUX) {  //Select command according to environment.
+        $kill_command = "pkill ";
+    } else {
+        $kill_command = "taskkill /PID ";
+    }
+
+    $kill_command .= $PID;
+
+    $process = new Process($kill_command);
+    $process->run();
+
+    // executes after the command finishes
+    if (!$process->isSuccessful()) {
+        if(ENV_IS_DEBUG) {
+            var_dump(ProcessFailedException($process));
+        }
+        return false;
+    }
+
+    return true;
+}
 
