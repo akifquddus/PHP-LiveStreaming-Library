@@ -1,5 +1,14 @@
 <?php
 /**
+ * Copyright (c) 2017. Sohail Haider, Averox Inc.
+ * @author Sohail Haider <sohailh343@gmail.com>
+ */
+
+/**
+ * Helper Library for task related to FFMPEG, including Process management
+ */
+
+/**
  * Dependencies Loaded
  */
 use Symfony\Component\Process\Process;
@@ -17,12 +26,19 @@ define('FFMPEG_PATH', 'ffmpeg');
  *
  */
 define('FFMPEG_STREAM_COMMPAND_PART_1', FFMPEG_PATH.' -re -i ');
+/**
+ * 2nd part of the FFMPEG COMMAND.
+ */
 define('FFMPEG_STREAM_COMMPAND_PART_2', ' -acodec copy -vcodec copy -f flv ');
 
 /**
  * Extra Tweaking Variables
  */
 define('ENV_IS_DEBUG', false);
+/**
+ * To determine which type of commands should be used, Based on the HOST OS.
+ * It must be configured.
+ */
 define('IS_LINUX', TRUE);
 
 

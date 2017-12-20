@@ -1,23 +1,46 @@
 <?php
+/**
+ * Copyright (c) 2017. Sohail Haider, Averox Inc.
+ * @author Sohail Haider <sohailh343@gmail.com>
+ */
 
 use Symfony\Component\Process\Process;
 
+/**
+ * Set the Cache Properties. Returns pointer of CI instance.
+ * @return CI_Controller
+ */
 function loadCache() {
     $CI = & get_instance();
     $CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     return $CI;
 }
+
+/**
+ * Return the Value Stored at provided KEY from Cache.
+ * @param $key
+ * @return mixed
+ */
 function getCache($key) {
     $CI = loadCache();
     return $CI->cache->get($key);
 }
 
+/**
+ * Will Save the $value in Cache with provided $key.
+ * @param $key
+ * @param $value
+ */
 function saveInCache($key, $value) {
 
     $CI = loadCache();
     $CI->cache->save($key, $value, 90000);
 }
 
+/**
+ * Save Process ID in PIDs Array in Cache with current time.
+ * @param $PID
+ */
 function saveProcess($PID) {
     $CI = loadCache();
     if ( ! $processes = $CI->cache->get('processes'))
