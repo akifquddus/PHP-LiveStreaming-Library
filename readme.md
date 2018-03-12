@@ -5,6 +5,20 @@ PHP-LiveStreaming-Library
 PHP Library to Stream Any Stored Video File Format to RTMP or RTMPS URL. Developed by Sohail Haider sohailh343@gmail.com & Akif Quddus akifquddus@gmail.com
 
 *******************
+Start Stream
+*******************
+
+Send a POST Request to:
+http://yourstreamingserver.com/stream/startstream
+
+```
+{
+    'source': '//bucketvideos.s3.amazonaws.com/Video4.mp4',
+    'destination: 'rtmps://live-api-a.facebook.com:443/rtmp/1840118365998379?ds=1&s_sw=0&a=ATjIps5N8axKP4bu'
+}
+```
+
+*******************
 Server Requirements
 *******************
 
