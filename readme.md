@@ -1,12 +1,8 @@
-###################
-PHP-LiveStreaming-Library
-###################
+# PHP-LiveStreaming-Library
 
 PHP Library to Stream Any Stored Video File Format to RTMP or RTMPS URL. Developed by Sohail Haider sohailh343@gmail.com & Akif Quddus akifquddus@gmail.com
 
-*******************
-Start Stream
-*******************
+## Start Stream
 
 Send a POST Request to:
 http://yourstreamingserver.com/stream/startstream
@@ -18,9 +14,7 @@ http://yourstreamingserver.com/stream/startstream
 }
 ```
 
-*******************
-Server Requirements
-*******************
+## Server Requirements
 
 PHP version 5.6 or newer is recommended.
 
@@ -29,16 +23,12 @@ such old versions of PHP, because of potential security and performance
 issues, as well as missing features.
 
 
-*******
-License
-*******
+## License
 
 Please see the `license
 agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
 
-*********
-Resources
-*********
+## Resources
 
 -  `User Guide <https://codeigniter.com/docs>`_
 -  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
