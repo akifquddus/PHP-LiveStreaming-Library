@@ -30,11 +30,38 @@ http://yourstreamingserver.com/stream/startstream
 ```json
 {
     "status": false,
-    "message": '0x2031: Oops, Something went wrong! Unable to start Processing.',
+    "message": "0x2031: Oops, Something went wrong! Unable to start Processing.",
 }
 ```
 
 ## Stop Stream
+
+Send a POST Request to:
+http://yourstreamingserver.com/stream/stopstream
+
+```php
+{
+    'PID': 27265
+}
+```
+
+### Success
+
+```json
+{
+    "status": true,
+    "message": "Terminated Process 27265 successfully."
+}
+```
+
+### Error
+
+```json
+{
+    "status": false,
+    "message": "Could not Terminated Process 27265 successfully.",
+}
+```
 
 ## Server Requirements
 
