@@ -14,6 +14,13 @@ http://yourstreamingserver.com/stream/startstream
 }
 ```
 ### Success
+```json
+{
+    "status": true,
+    "PID": 27013,
+    "source": "https://bucketvideos.s3.amazonaws.com/Video4.mp4",
+    "destination": "rtmps://live-api-a.facebook.com:443/rtmp/1840118365998379?ds=1&s_sw=0&a=ATjIps5N8axKP4bu"
+}
 
 ## Server Requirements
 
