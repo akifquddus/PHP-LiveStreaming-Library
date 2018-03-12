@@ -11,8 +11,7 @@
 /**
  * Dependencies Loaded
  */
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
+use Cocur\BackgroundProcess\BackgroundProcess;
 
 /**
  * Installation path of ffmpeg
@@ -34,7 +33,7 @@ define('FFMPEG_STREAM_COMMPAND_PART_2', ' -acodec copy -vcodec copy -f flv ');
 /**
  * Extra Tweaking Variables
  */
-define('ENV_IS_DEBUG', false);
+define('ENV_IS_DEBUG', true);
 /**
  * To determine which type of commands should be used, Based on the HOST OS.
  * It must be configured.
@@ -50,6 +49,9 @@ define('IS_LINUX', TRUE);
  * @return bool|Process
  */
 function FFMPEG_START_STREAM($source, $destination) {
+    ini_set('max_execution_time', 0);
+    set_time_limit(0);
+
     $response = false;
     $streamCommand_string = "";    //Streaming URL Rendering
 
@@ -60,8 +62,8 @@ function FFMPEG_START_STREAM($source, $destination) {
         $streamCommand_string .= FFMPEG_STREAM_COMMPAND_PART_2;
         $streamCommand_string .= '"'.$destination.'"';
 
-        $process = new Process($streamCommand_string);
-        $process->start();
+        $process = new BackgroundProcess($streamCommand_string);
+        $process->run();
 
         return $process;    //return whole process obj
 
@@ -72,7 +74,6 @@ function FFMPEG_START_STREAM($source, $destination) {
         }
         return false;
     }
-
 
     return $response;
 }

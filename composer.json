@@ -12,7 +12,6 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"symfony/process": "^3.4",
 		"cocur/background-process": "^0.7.0"
 	},
 	"suggest": {
