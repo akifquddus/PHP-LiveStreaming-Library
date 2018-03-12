@@ -1,12 +1,5 @@
 <?php
 /**
- * Copyright (c) 2017. Sohail Haider, Averox Inc.
- * @author Sohail Haider <sohailh343@gmail.com>
- */
-
-use Symfony\Component\Process\Process;
-
-/**
  * Class Streams_model
  * Not being Used right now, but will be used in case CACHE goes out.
  */
