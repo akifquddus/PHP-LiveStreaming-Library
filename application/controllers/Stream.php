@@ -88,7 +88,7 @@ class Stream extends CI_Controller {
             echo json_encode(
                 array(
                     'status'    =>  false,
-                    'message'   =>  'Could not Terminated Process '.$PID.' successfully.'
+                    'message'   =>  'Could not Terminate the Process '.$PID.' successfully.'
                 )
             );
         }

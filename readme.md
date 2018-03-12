@@ -59,7 +59,7 @@ http://yourstreamingserver.com/stream/stopstream
 ```json
 {
     "status": false,
-    "message": "Could not Terminated Process 27265 successfully.",
+    "message": "Could not Terminate the Process 27265 successfully.",
 }
 ```
 
