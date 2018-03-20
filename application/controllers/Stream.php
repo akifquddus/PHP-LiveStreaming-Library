@@ -78,7 +78,7 @@ class Stream extends CI_Controller {
         $PID = (int) $this->input->post('PID');
 
         $result = FFMPEG_KILL_PROCESS($PID);
-        if($result == true) {
+        if($result === true) {
             echo json_encode(
                 array(
                     'status'    =>  true,
