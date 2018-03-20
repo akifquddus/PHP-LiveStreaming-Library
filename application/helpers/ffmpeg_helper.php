@@ -89,17 +89,8 @@ function FFMPEG_KILL_PROCESS($PID) {
 
     $kill_command .= $PID;
 
-    $process = new Process($kill_command);
-    $process->run();
-
-    // executes after the command finishes
-    if (!$process->isSuccessful()) {
-        if(ENV_IS_DEBUG) {
-            var_dump(ProcessFailedException($process));
-        }
-        return false;
-    }
-
-    return true;
+    $process = BackgroundProcess::createFromPID($PID);
+    $process->isRunning(); // -> true
+    return $process->stop();      // -> true
 }
 

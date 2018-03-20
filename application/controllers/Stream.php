@@ -77,7 +77,8 @@ class Stream extends CI_Controller {
     function stopstream() {
         $PID = (int) $this->input->post('PID');
 
-        if(FFMPEG_KILL_PROCESS($PID)) {
+        $result = FFMPEG_KILL_PROCESS($PID);
+        if($result == true) {
             echo json_encode(
                 array(
                     'status'    =>  true,
@@ -88,7 +89,7 @@ class Stream extends CI_Controller {
             echo json_encode(
                 array(
                     'status'    =>  false,
-                    'message'   =>  'Could not Terminate the Process '.$PID.' successfully.'
+                    'message'   =>  $result
                 )
             );
         }
